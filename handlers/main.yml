@@ -1,0 +1,14 @@
+---
+# handlers file for v98765_vmagent
+- name: restart vmagent
+  become: true
+  systemd:
+    daemon_reload: true
+    name: vmagent
+    state: restarted
+
+- name: reload vmagent
+  become: true
+  systemd:
+    name: vmagent
+    state: reloaded

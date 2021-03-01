@@ -1,0 +1,22 @@
+---
+- name: Create vmagent system group
+  group:
+    name: "{{ vmagent_system_group }}"
+    state: present
+    system: true
+  when: vmagent_system_group != "root"
+
+- name: Create vmagent system user
+  user:
+    name: "{{ vmagent_system_user }}"
+    groups: "{{ vmagent_system_group }}"
+    append: true
+    shell: /usr/sbin/nologin
+    system: true
+    createhome: false
+  when: vmagent_system_user != "root"
+
+- name: Check if vmagent is installed
+  ansible.builtin.stat:
+    path: "{{ vmagent_install_dir }}/vmagent"
+  register: vmagent_is_installed

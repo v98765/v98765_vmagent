@@ -1,0 +1,39 @@
+---
+- name: create env file
+  template:
+    src: vmagent.j2
+    dest: /etc/default/vmagent
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart vmagent
+
+- name: create systemd service unit
+  template:
+    src: vmagent.service.j2
+    dest: /lib/systemd/system/vmagent.service
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart vmagent
+
+- name: configure vmagent
+  copy:
+    src: vmagent.yml
+    dest: "{{ vmagent_promscrape_config }}"
+    owner: vmagent
+    group: vmagent
+    mode: 0640
+    validate: "{{ vmagent_install_dir }}/vmagent -dryRun -promscrape.config=%s"
+  notify:
+    - reload vmagent
+
+- name: copy relabeling config
+  copy:
+    src: rewrite.yml
+    dest: "{{ vmagent_remoteWrite_relabelConfig }}"
+    owner: vmagent
+    group: vmagent
+    mode: 0644
+  notify:
+    - reload vmagent

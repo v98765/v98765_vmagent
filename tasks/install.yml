@@ -1,0 +1,43 @@
+---
+- block:
+
+    - name: "Ensure existense of /tmp/vmutils-v{{ vmagent_version }}"
+      ansible.builtin.file:
+        path: "/tmp/vmutils-v{{ vmagent_version }}"
+        state: directory
+
+    - name: Unarchive vmutils binaries
+      become: false
+      unarchive:
+        src: "{{ vmagent_repo_dir }}/vmutils-amd64-v{{ vmagent_version }}.tar.gz"
+        dest: "/tmp/vmutils-v{{ vmagent_version }}"
+        creates: "/tmp/vmutils-v{{ vmagent_version }}/vmagent-prod"
+      check_mode: false
+
+    - name: "Copy vmagent to {{ vmagent_install_dir }}"
+      ansible.builtin.copy:
+        src: "/tmp/vmutils-v{{ vmagent_version }}/vmagent-prod"
+        dest: "/usr/local/bin/vmagent"
+        owner: "{{ vmagent_system_user }}"
+        group: "{{ vmagent_system_group }}"
+        mode: 0755
+        remote_src: yes
+      notify: restart vmagent
+
+  when: vmagent_is_installed.stat.exists is defined and not vmagent_is_installed.stat.exists
+
+- name: create vmagent data directory
+  file:
+    path: "{{ vmagent_remoteWrite_tmpDataPath }}"
+    state: directory
+    owner: "{{ vmagent_system_user }}"
+    group: "{{ vmagent_system_group }}"
+    mode: 0755
+
+- name: create vmagent config directory
+  file:
+    path: "{{ vmagent_config_dir }}"
+    state: directory
+    owner: "{{ vmagent_system_user }}"
+    group: "{{ vmagent_system_group }}"
+    mode: 0755

@@ -1,0 +1,29 @@
+{{ ansible_managed | comment }}
+
+[Unit]
+Description=Victoria-metrics vmagent
+After=network-online.target auditd.service
+
+[Service]
+Type=simple
+User={{ vmagent_system_user }}
+Group={{ vmagent_system_group }}
+EnvironmentFile=-/etc/default/vmagent
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart={{ vmagent_install_dir }}/vmagent -envflag.enable -envflag.prefix=VMAGENT_
+
+SyslogIdentifier=vmagent
+Restart=on-failure
+LimitNOFILE=infinity
+Restart=always
+
+PrivateTmp=yes
+ProtectHome=yes
+NoNewPrivileges=yes
+ProtectSystem=full
+ProtectControlGroups=true
+ProtectKernelModules=true
+ProtectKernelTunables=yes
+
+[Install]
+WantedBy=multi-user.target
