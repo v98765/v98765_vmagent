@@ -17,7 +17,7 @@
     - name: "Copy vmagent to {{ vmagent_install_dir }}"
       ansible.builtin.copy:
         src: "/tmp/vmutils-v{{ vmagent_version }}/vmagent-prod"
-        dest: "/usr/local/bin/vmagent"
+        dest: "{{ vmagent_install_dir }}/vmagent"
         owner: "{{ vmagent_system_user }}"
         group: "{{ vmagent_system_group }}"
         mode: 0755
