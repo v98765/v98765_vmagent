@@ -1,6 +1,6 @@
 ---
 # defaults file for v98765_vmagent
-vmagent_version: 1.55.0
+vmagent_version: 1.55.1
 vmagent_system_user: "vmagent"
 vmagent_system_group: "vmagent"
 vmagent_config_dir: "/etc/vmagent"
@@ -15,3 +15,17 @@ vmagent_promscrape_suppressScrapeErrors: true
 vmagent_remoteWrite_relabelConfig: "{{ vmagent_config_dir }}/rewrite.yml"
 vmagent_influxTrimTimestamp: "1s"
 vmagent_http_maxGracefulShutdownDuration: "10s"
+## configuration files
+# vmagent promscrape_config
+vmagent_global:
+  scrape_interval: 60s
+  scrape_timeout: 30s
+
+vmagent_scrape_configs:
+  - job_name: "vmagent"
+    static_configs:
+    - targets:
+      - "{{ inventory_hostname_short }}:8429"
+
+# vmagent remoteWrite_relabelConfig
+vmagent_relabel_configs: []
