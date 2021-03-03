@@ -1,13 +1,10 @@
 ---
 # defaults file for v98765_vmagent
-vmagent_version: 1.54.1
+vmagent_version: 1.55.0
 vmagent_system_user: "vmagent"
 vmagent_system_group: "vmagent"
 vmagent_config_dir: "/etc/vmagent"
 vmagent_install_dir: "/usr/local/bin"
-# cd /var/tmp/archive
-# wget https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.54.1/vmutils-amd64-v1.54.1.tar.gz
-# wget -O vmutils_checksums.txt https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.54.1/vmutils-arm64-v1.54.1_checksums.txt
 vmagent_repo_dir: "/var/tmp/archive"
 # vm flags for env file
 # https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variables
@@ -18,18 +15,3 @@ vmagent_promscrape_suppressScrapeErrors: true
 vmagent_remoteWrite_relabelConfig: "{{ vmagent_config_dir }}/rewrite.yml"
 vmagent_influxTrimTimestamp: "1s"
 vmagent_http_maxGracefulShutdownDuration: "10s"
-
-# vmagent config
-vmagent_global:
-  scrape_interval: 60s
-  scrape_timeout: 30s
-
-vmagent_scrape_configs:
-  - job_name: "vmagent"
-    static_configs:
-    - targets:
-      - "{{ inventory_hostname_short }}:8429"
-  - job_name: 'victoria-metrics'
-    static_configs:
-    - targets:
-      - "{{ inventory_hostname_short }}:8428"
