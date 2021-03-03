@@ -1,0 +1,5 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
+{{ ansible_managed | comment }}
+{% if vmagent_relabel_configs | length > 0 %}
+{{ vmagent_relabel_configs | to_nice_yaml(indent=2) | indent(2,False) }}
+{% endif %}
