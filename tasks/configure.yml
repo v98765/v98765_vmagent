@@ -17,20 +17,20 @@
     mode: 0644
   notify: restart vmagent
 
-- name: configure vmagent
-  copy:
-    src: vmagent.yml
+- name: configure vmagent.yml
+  template:
+    src: vmagent.yml.j2
     dest: "{{ vmagent_promscrape_config }}"
     owner: vmagent
     group: vmagent
-    mode: 0640
+    mode: 0644
     validate: "{{ vmagent_install_dir }}/vmagent -dryRun -promscrape.config=%s"
   notify:
     - reload vmagent
 
-- name: copy relabeling config
-  copy:
-    src: rewrite.yml
+- name: configure rewrite.yml
+  template:
+    src: rewrite.yml.j2
     dest: "{{ vmagent_remoteWrite_relabelConfig }}"
     owner: vmagent
     group: vmagent
