@@ -41,11 +41,39 @@ Example Playbook
 
 ```yaml
 ---
-- hosts: vmagent
+- hosts: exporters
   gather_facts: true
   connection: ssh
   roles:
     - v98765_vmagent
+
+  tasks:
+    - name: copy vmagent targets
+      copy:
+        src: "{{ item }}"
+        dest: "{{ vmagent_config_dir }}/targets/"
+        force: true
+        owner: root
+        group: vmagent
+        mode: 0644
+      with_fileglob: "{{ vmagent_targets_files }}"
+      tags:
+        - vmagent_configure
+```
+host_vars/exporters.yml
+```yaml
+vmagent_targets_files:
+  - targets/*.yml
+```
+targets/some.yml
+```yaml
+---
+- labels:
+    dc: a
+    rack: b
+  targets:
+    - some01
+    - some02
 ```
 
 License
