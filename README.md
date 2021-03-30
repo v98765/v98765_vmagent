@@ -32,8 +32,7 @@ Read this [https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variab
 ```sh
 mkdir -p /var/tmp/archive
 cd /var/tmp/archive
-wget https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.55.1/vmutils-amd64-v1.55.1.tar.gz
-wget -O vmutils_checksums.txt https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.55.1/vmutils-arm64-v1.55.1_checksums.txt
+wget https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.57.1/vmutils-amd64-v1.57.1.tar.gz
 ```
 
 Example Playbook
