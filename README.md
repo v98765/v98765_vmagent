@@ -13,7 +13,7 @@ Role Variables
 
 Name | Default Value | Description
 ---|---|---
-`vmagent_version` |  1.55.1 | current version
+`vmagent_version` |  1.57.1 | current version
 `vmagent_system_user` |  "vmagent" | 
 `vmagent_system_group` |  "vmagent" | 
 `vmagent_config_dir` |  "/etc/vmagent" | 
