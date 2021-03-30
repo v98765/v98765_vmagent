@@ -15,8 +15,3 @@
     system: true
     createhome: false
   when: vmagent_system_user != "root"
-
-- name: Check if vmagent is installed
-  ansible.builtin.stat:
-    path: "{{ vmagent_install_dir }}/vmagent"
-  register: vmagent_is_installed
