@@ -24,8 +24,6 @@
         remote_src: yes
       notify: restart vmagent
 
-#  when: vmagent_is_installed.stat.exists is defined and not vmagent_is_installed.stat.exists
-
 - name: create vmagent data directory
   file:
     path: "{{ vmagent_remoteWrite_tmpDataPath }}"
