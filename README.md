@@ -27,7 +27,7 @@ Name | Default Value | Description
 `vmagent_influxTrimTimestamp` |  "1s" | Trim timestamps for Influx line protocol data to this duration. Minimum practical duration is 1ms. Higher duration (i.e. 1s) may be used for reducing disk space usage for timestamp data (default 1ms)
 `vmagent_http_maxGracefulShutdownDuration` |  "10s" | The maximum duration for graceful shutdown of HTTP server. Highly loaded server may require increased value for graceful shutdown (default 7s)
 
-Read this [https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variables](https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variables) аnd set more vars, put it into `templates/vmagent.j2`
+Read this [https://docs.victoriametrics.com/#environment-variables](https://docs.victoriametrics.com/#environment-variables) аnd set more vars, put it into `templates/vmagent.j2`
 
 ```sh
 mkdir -p /var/tmp/archive
