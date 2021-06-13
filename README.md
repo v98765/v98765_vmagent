@@ -13,7 +13,7 @@ Role Variables
 
 Name | Default Value | Description
 ---|---|---
-`vmagent_version` |  1.57.1 | current version
+`vmagent_version` |  1.61.1 | current version
 `vmagent_system_user` |  "vmagent" | 
 `vmagent_system_group` |  "vmagent" | 
 `vmagent_config_dir` |  "/etc/vmagent" | 
@@ -32,7 +32,7 @@ Read this [https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variab
 ```sh
 mkdir -p /var/tmp/archive
 cd /var/tmp/archive
-wget https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.57.1/vmutils-amd64-v1.57.1.tar.gz
+wget https://github.com/VictoriaMetrics/VictoriaMetrics/releases/download/v1.61.1/vmutils-amd64-v1.61.1.tar.gz
 ```
 
 Example Playbook
