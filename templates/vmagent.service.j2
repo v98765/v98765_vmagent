@@ -13,9 +13,8 @@ ExecReload=/bin/kill -HUP $MAINPID
 ExecStart={{ vmagent_install_dir }}/vmagent -envflag.enable -envflag.prefix=VMAGENT_
 
 SyslogIdentifier=vmagent
-Restart=on-failure
-LimitNOFILE=infinity
 Restart=always
+LimitNOFILE=infinity
 
 PrivateTmp=yes
 ProtectHome=yes
