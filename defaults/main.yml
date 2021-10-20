@@ -1,6 +1,6 @@
 ---
 # defaults file for v98765_vmagent
-vmagent_version: 1.66.2
+vmagent_version: 1.67.0
 vmagent_system_user: "vmagent"
 vmagent_system_group: "vmagent"
 vmagent_config_dir: "/etc/vmagent"
