@@ -32,10 +32,14 @@
     group: "{{ vmagent_system_group }}"
     mode: 0755
 
-- name: create vmagent config directory
+- name: create vmagent configs directory
   file:
     path: "{{ vmagent_config_dir }}"
     state: directory
-    owner: "{{ vmagent_system_user }}"
-    group: "{{ vmagent_system_group }}"
+    owner: root
+    group: root
     mode: 0755
+  loop:
+    - "{{ vmagent_config_dir }}"
+    - "{{ vmagent_config_dir }}/targets"
+    - "{{ vmagent_config_dir }}/relabel"
