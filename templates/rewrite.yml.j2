@@ -1,4 +1,0 @@
-{{ ansible_managed | comment }}
-{% if vmagent_relabel_configs | length > 0 %}
-{{ vmagent_relabel_configs | to_nice_yaml }}
-{% endif %}
