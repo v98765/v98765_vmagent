@@ -1,0 +1,4 @@
+---
+- targets:
+    - device1
+    - device2

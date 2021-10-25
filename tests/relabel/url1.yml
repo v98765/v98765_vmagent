@@ -1,0 +1,4 @@
+---
+- action: keep
+  source_labels: [url1]
+  regex: .+
