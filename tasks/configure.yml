@@ -6,7 +6,8 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart vmagent
+  notify:
+    - restart vmagent
 
 - name: create systemd service unit
   template:
@@ -15,25 +16,41 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart vmagent
+  notify:
+    - restart vmagent
 
 - name: configure vmagent.yml
   template:
     src: vmagent.yml.j2
     dest: "{{ vmagent_promscrape_config }}"
-    owner: vmagent
-    group: vmagent
+    owner: root
+    group: root
     mode: 0644
     validate: "{{ vmagent_install_dir }}/vmagent -dryRun -promscrape.config=%s"
   notify:
     - reload vmagent
 
-- name: configure rewrite.yml
-  template:
-    src: rewrite.yml.j2
-    dest: "{{ vmagent_remoteWrite_relabelConfig }}"
-    owner: vmagent
-    group: vmagent
+- name: copy relabel files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ vmagent_config_dir }}/relabel/"
+    force: true
+    owner: root
+    group: root
     mode: 0644
+  with_fileglob: "{{ vmagent_relabel_files }}"
+  when: |
+    ( vmagent_remoteWrite_relabelConfig | length > 0 ) or
+    ( vmagent_remoteWrite_urlRelabelConfig | length > 0 )
   notify:
     - reload vmagent
+
+- name: copy targets files
+  copy:
+    src: "{{ item }}"
+    dest: "{{ vmagent_config_dir }}/targets/"
+    force: true
+    owner: root
+    group: root
+    mode: 0644
+  with_fileglob: "{{ vmagent_targets_files }}"
