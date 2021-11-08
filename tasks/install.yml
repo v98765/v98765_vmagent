@@ -34,7 +34,7 @@
 
 - name: create vmagent configs directory
   file:
-    path: "{{ vmagent_config_dir }}"
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
