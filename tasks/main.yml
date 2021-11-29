@@ -8,17 +8,14 @@
     - vmagent_run
 
 - include: install.yml
-  become: true
   tags:
     - vmagent_install
 
 - include: configure.yml
-  become: true
   tags:
     - vmagent_configure
 
 - name: ensure vmagent service is started and enabled
-  become: true
   systemd:
     daemon_reload: true
     name: vmagent
