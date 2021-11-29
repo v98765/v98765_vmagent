@@ -38,10 +38,10 @@
     owner: root
     group: root
     mode: 0644
-  with_fileglob: "{{ vmagent_relabel_files }}"
+  with_items: "{{ vmagent_relabel_files }}"
   when: |
-    ( vmagent_remoteWrite_relabelConfig | length > 0 ) or
-    ( vmagent_remoteWrite_urlRelabelConfig | length > 0 )
+    ( vmagent_remote_write_url_relabel_config | length > 0 ) or
+    ( vmagent_remote_write_relabel_config | length > 0 )
   notify:
     - reload vmagent
 
@@ -53,4 +53,4 @@
     owner: root
     group: root
     mode: 0644
-  with_fileglob: "{{ vmagent_targets_files }}"
+  with_items: "{{ vmagent_targets_files }}"

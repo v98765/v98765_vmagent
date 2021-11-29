@@ -2,12 +2,13 @@
 - name: Converge
   hosts: all
   vars:
-    vmagent_remoteWrite_url: "http://127.0.0.1:8428/api/v1/write,http://127.0.0.1:8528/api/v1/write"
-    vmagent_remoteWrite_urlRelabelConfig: "{{ vmagent_config_dir }}/relabel/url1.yml,{{ vmagent_config_dir }}/relabel/url2.yml"
+    vmagent_remote_write_url: "http://127.0.0.1:8428/api/v1/write,http://127.0.0.1:8528/api/v1/write"
+    vmagent_remote_write_url_relabel_config: "{{ vmagent_config_dir }}/relabel/url1.yml,{{ vmagent_config_dir }}/relabel/url2.yml"
     vmagent_relabel_files:
-      - tests/relabel/*.yml
+      - tests/relabel/url1.yml
+      - tests/relabel/url2.yml
     vmagent_targets_files:
-      - tests/targets/*.yml
+      - tests/targets/device.yml
 
   tasks:
     - name: "Include v98765_vmagent"

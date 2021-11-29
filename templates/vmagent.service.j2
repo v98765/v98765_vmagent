@@ -15,7 +15,7 @@ ExecStart={{ vmagent_install_dir }}/vmagent -envflag.enable -envflag.prefix=VMAG
 SyslogIdentifier=vmagent
 Restart=always
 LimitNOFILE=infinity
-ReadWriteDirectories={{ vmagent_remoteWrite_tmpDataPath }}
+ReadWriteDirectories={{ vmagent_remote_write_tmp_data_path }}
 
 PrivateTmp=yes
 ProtectHome=yes

@@ -29,12 +29,13 @@ vmagent_global:
 vmagent_scrape_configs:
   - job_name: "vmagent"
     static_configs:
-    - targets:
-      - "{{ inventory_hostname_short }}:8429"
+      - targets:
+          - "{{ inventory_hostname_short }}:8429"
 
 # local relabel files
 vmagent_relabel_files:
-  - vmagent/relabel/*.yml
+  - vmagent/relabel/url1.yml
+  - vmagent/relabel/url2.yml
 # local fd targets
 vmagent_targets_files:
-  - vmagent/targets/*.yml
+  - vmagent/targets/device.yml

@@ -27,7 +27,7 @@
 
 - name: create vmagent data directory
   file:
-    path: "{{ vmagent_remoteWrite_tmpDataPath }}"
+    path: "{{ vmagent_remote_write_tmp_data_path }}"
     state: directory
     owner: "{{ vmagent_system_user }}"
     group: "{{ vmagent_system_group }}"
