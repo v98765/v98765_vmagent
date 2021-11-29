@@ -1,19 +1,19 @@
 {{ ansible_managed | comment }}
 
-# must have
+# req.
 VMAGENT_promscrape_config={{ vmagent_promscrape_config }}
-VMAGENT_remoteWrite_tmpDataPath={{ vmagent_remoteWrite_tmpDataPath }}
-VMAGENT_remoteWrite_url='{{ vmagent_remoteWrite_url }}'
+VMAGENT_remoteWrite_tmpDataPath={{ vmagent_remote_write_tmp_data_path }}
+VMAGENT_remoteWrite_url='{{ vmagent_remote_write_url }}'
 
-# optional
-VMAGENT_promscrape_suppressScrapeErrors={{ vmagent_promscrape_suppressScrapeErrors }}
-VMAGENT_influxTrimTimestamp={{ vmagent_influxTrimTimestamp }}
-VMAGENT_http_maxGracefulShutdownDuration={{ vmagent_http_maxGracefulShutdownDuration }}
+# opt.
+{% if vmagent_promscrape_suppress_scrape_errors | length > 0 %}
+VMAGENT_promscrape_suppressScrapeErrors={{ vmagent_promscrape_suppress_scrape_errors }}
+{% endif %}
 {% if vmagent_remoteWrite_urlRelabelConfig | length > 0 %}
 # relabel per url. same order as remoteWrite_url
-VMAGENT_remoteWrite_urlRelabelConfig='{{ vmagent_remoteWrite_urlRelabelConfig }}'
+VMAGENT_remoteWrite_urlRelabelConfig='{{ vmagent_remote_write_url_relabel_config }}'
 {% endif %}
 {% if vmagent_remoteWrite_relabelConfig | length > 0 %}
 # relabel for all url
-VMAGENT_remoteWrite_relabelConfig='{{ vmagent_remoteWrite_relabelConfig }}'
+VMAGENT_remoteWrite_relabelConfig='{{ vmagent_remote_write_relabel_config }}'
 {% endif %}

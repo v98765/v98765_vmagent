@@ -1,6 +1,6 @@
 ---
 # defaults file for v98765_vmagent
-vmagent_version: 1.68.0
+vmagent_version: 1.69.0
 vmagent_system_user: "vmagent"
 vmagent_system_group: "vmagent"
 vmagent_config_dir: "/etc/vmagent"
@@ -10,16 +10,14 @@ vmagent_repo_dir: "/var/tmp/archive"
 # vm flags for env file
 # https://github.com/VictoriaMetrics/VictoriaMetrics#environment-variables
 vmagent_promscrape_config: "{{ vmagent_config_dir }}/vmagent.yml"
-vmagent_remoteWrite_tmpDataPath: "/var/lib/vmagent"
-vmagent_remoteWrite_url: "http://127.0.0.1:8428/api/v1/write"
+vmagent_remote_write_tmp_data_path: "/var/lib/vmagent"
+vmagent_remote_write_url: "http://127.0.0.1:8428/api/v1/write"
 # multiple url 'http://vm_url1:8428/api/v1/write,http://vm_url2:8428/api/v1/write'
-vmagent_promscrape_suppressScrapeErrors: true
-vmagent_influxTrimTimestamp: "1s"
-vmagent_http_maxGracefulShutdownDuration: "10s"
+vmagent_promscrape_suppress_scrape_errors: true
 # relabel configs
-vmagent_remoteWrite_relabelConfig: {}
+vmagent_remote_write_relabel_config: {}
 # example:  {{ vmagent_config_dir }}/relabel/global.yml
-vmagent_remoteWrite_urlRelabelConfig: {}
+vmagent_remote_write_url_relabel_config: {}
 # expample: {{ vmagent_config_dir }}/relabel/url1.yml,{{ vmagent_config_dir }}/relabel/url2.yml
 
 ## configuration files
