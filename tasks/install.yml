@@ -4,6 +4,7 @@
     - name: "Ensure existense of /tmp/vmutils-v{{ vmagent_version }}"
       ansible.builtin.file:
         path: "/tmp/vmutils-v{{ vmagent_version }}"
+        mode: 0755
         state: directory
 
     - name: Unarchive vmutils binaries
