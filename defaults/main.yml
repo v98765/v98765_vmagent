@@ -1,6 +1,6 @@
 ---
 # defaults file for v98765_vmagent
-vmagent_version: 1.69.0
+vmagent_version: 1.70.0
 vmagent_system_user: "vmagent"
 vmagent_system_group: "vmagent"
 vmagent_config_dir: "/etc/vmagent"
@@ -14,6 +14,7 @@ vmagent_remote_write_tmp_data_path: "/var/lib/vmagent"
 vmagent_remote_write_url: "http://127.0.0.1:8428/api/v1/write"
 # multiple url 'http://vm_url1:8428/api/v1/write,http://vm_url2:8428/api/v1/write'
 vmagent_promscrape_suppress_scrape_errors: true
+vmagent_influx_trim_timestamp: "1s"
 # relabel configs
 vmagent_remote_write_relabel_config: {}
 # example:  {{ vmagent_config_dir }}/relabel/global.yml
