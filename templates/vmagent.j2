@@ -9,6 +9,9 @@ VMAGENT_remoteWrite_url='{{ vmagent_remote_write_url }}'
 {% if vmagent_promscrape_suppress_scrape_errors %}
 VMAGENT_promscrape_suppressScrapeErrors={{ vmagent_promscrape_suppress_scrape_errors }}
 {% endif %}
+{% if vmagent_influx_trim_timestamp | length > 0 %}
+VMAGENT_influxTrimTimestamp='{{ vmagent_influx_trim_timestamp }}'
+{% endif %}
 {% if vmagent_remote_write_url_relabel_config | length > 0 %}
 # relabel per url. same order as remoteWrite_url
 VMAGENT_remoteWrite_urlRelabelConfig='{{ vmagent_remote_write_url_relabel_config }}'
